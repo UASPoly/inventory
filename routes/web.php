@@ -22,7 +22,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function (){
-    
+    Route::name('tenant.')
+    ->prefix('/tenant')
+    ->group(function (){
+        Route::post('/register', 'TenantController@register')->name('register');    
+        
+    });
     Route::name('property.')
     ->prefix('/property')
     ->group(function (){

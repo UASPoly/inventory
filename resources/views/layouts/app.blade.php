@@ -21,10 +21,7 @@
       font-size: 24px;
     }
 
-    .welcome-container {
-      text-align: center;
-      padding: 100px 20px;
-    }
+    
 
     h1 {
       color: #007bff;
