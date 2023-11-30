@@ -16,7 +16,8 @@ class CreateFeaturesTable extends Migration
         Schema::create('features', function (Blueprint $table) {
             $table->id();
             $table->foreignId('property_id');
-            $table->string('link');
+            $table->string('name');
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }

@@ -15,12 +15,14 @@ class PropertyController extends Controller
             'price'=>'required',
             'address'=>'required',
             ]);
-        Auth::user()->properties()->create([
+        $property = Auth::user()->properties()->create([
             'size'=>$request->size,
             'price'=>$request->price,
             'address'=>$request->address,
             ]); 
-            
+        foreach(['Gate', 'Pallow', 'Boys Quarter', 'Bed Room', 'Kitchen', 'Store', 'Toilet'] as $feature){
+            $property->features()->firstOrCreate(['name'=>$feature]);
+        }    
         return redirect()->route('dashboard');   
     }
 
