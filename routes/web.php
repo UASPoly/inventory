@@ -20,3 +20,18 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function (){
+    
+    Route::name('ingredient.')
+    ->prefix('/ingredient')
+    ->group(function (){
+        Route::get('/', 'IngredientController@index')->name('index');    
+        Route::post('/register', 'IngredientController@register')->name('register');    
+        Route::post('/{ingredientId}/update', 'IngredientController@update')->name('update');    
+        Route::get('/{ingredientId}/delete', 'IngredientController@delete')->name('delete');        
+    });
+
+    
+    
+});

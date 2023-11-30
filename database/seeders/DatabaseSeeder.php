@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\PaymentType as Payment;
+
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +17,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::create([
+            'name' => 'Landlord',
+            'email' => 'landlord@'.config('app.name').'.com',
+            'password' => Hash::make('123456'),
+            'role' => 'landlord'
+        ]);
+    
+        foreach(['Rent', 'Expense', 'Security Deposit'] as $type){
+            Payment::firstOrCreate(['name'=>$type]);
+        }
     }
 }
