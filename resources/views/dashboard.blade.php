@@ -33,9 +33,12 @@
             <td>{{count($property->leaseAgreements)}}</td>
             <td>{{count($property->maintenanceRequests)}}</td>
             <td>{{count($property->communicationLogs)}}</td>
-            <td></td>
+            <td>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#edit_{{$property->id}}">Edit</button>
+            <a href="{{route('property.delete',[$property->id])}}" onclick="return confirm('Are you sure, you want delete this House?')"><button class="btn btn-secondary" >Edit</button></a>
+            </td>
         </tr>
-
+        @include('property.edit')
         @endforeach
     </tbody>
     </table>
