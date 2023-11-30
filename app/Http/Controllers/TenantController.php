@@ -26,4 +26,11 @@ class TenantController extends Controller
         ]);    
         return redirect()->route('dashboard');
     }
+
+    public function request($propertyId)
+    {
+        Auth::user()->tenant->rentRequests()->firstOrCreate(['property_id'=>$propertyId]);
+        
+        return redirect()->route('dashboard');
+    }
 }

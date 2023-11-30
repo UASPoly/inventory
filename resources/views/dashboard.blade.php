@@ -83,8 +83,9 @@
     @else
         <div class="row">
         @foreach(App\Models\Property::all() as $property)
-        <div class="col-sm-6">
-            <div class="card shadow">
+        @if(!Auth::user()->tenant->hasRequest($property))
+        <div class="col-sm-12">
+            <div class="card shadow mt-4">
                 <div class="card-header">
                     <table>
                         <tr>
@@ -105,10 +106,11 @@
                     @foreach($property->features as $feature)
                         <img src="{{$feature->image()}}" width="120" height="120" alt="{{$feature->name}}" title="{{$feature->name}}">
                     @endforeach
-                    <button class="btn btn-primary">Send Request</button>
+                    <a href="{{route('tenant.request', $property->id)}}"><button class="btn btn-primary">Send Request</button></a>
                 </div>
             </div>
         </div>
+        @endif
         @endforeach
         </div>
     @endif

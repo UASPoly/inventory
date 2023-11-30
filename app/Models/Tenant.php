@@ -23,4 +23,14 @@ class Tenant extends Model
     {
         return $this->hasMany(CommunicationLog::class);
     }
+
+    public function rentRequests()
+    {
+        return $this->hasMany(RentRequest::class);
+    }
+
+    public function hasRequest(Property $property)
+    {
+        return $this->rentRequests->where('property_id', $property->id)->first();
+    }
 }

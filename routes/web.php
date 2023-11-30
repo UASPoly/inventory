@@ -26,6 +26,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
     ->prefix('/tenant')
     ->group(function (){
         Route::post('/register', 'TenantController@register')->name('register');    
+        Route::get('/{propertyId}/request', 'TenantController@request')->name('request');    
         
     });
     Route::name('property.')

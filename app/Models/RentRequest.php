@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class RentRequest extends Model
 {
     protected $guarded = [];
-
+    
     public function tenant()
     {
         return $this->belongsTo(Tenant::class);
