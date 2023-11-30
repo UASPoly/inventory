@@ -34,7 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
         Route::name('feature.')
         ->prefix('/feature')
         ->group(function (){
-            Route::get('/', 'FeatureController@index')->name('index');    
+            Route::get('/{propertyId}', 'FeatureController@index')->name('index');    
             Route::post('/register', 'FeatureController@register')->name('register');    
             Route::post('/{featureId}/update', 'FeatureController@update')->name('update');    
             Route::get('/{featureId}/delete', 'FeatureController@delete')->name('delete');        

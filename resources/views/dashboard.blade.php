@@ -29,7 +29,7 @@
             <td>{{$property->size}}</td>
             <td>{{$property->price}}</td>
             <td>{{$property->address}}</td>
-            <td>{{count($property->features)}}</td>
+            <td><a href="{{route('property.feature.index',[$property->id])}}">{{count($property->features)}}</a></td>
             <td>{{count($property->leaseAgreements)}}</td>
             <td>{{count($property->maintenanceRequests)}}</td>
             <td>{{count($property->communicationLogs)}}</td>
