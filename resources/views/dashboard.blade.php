@@ -1,15 +1,46 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
+@section('title')
+    dashbaord
+@endsection
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+@section('content')
+    <h1 style="text-align: left;">Dashboard</h1>
+    @if(Auth::user()->role == "landlord")
+    <!-- landlord dashbord -->
+
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>HOUSES</th>
+            <th>PRICE</th>
+            <th>ADDRESS</th>
+            <th>FEATURES</th>
+            <th>LEASE AGREEMENTS</th>
+            <th>MAINTENANCE REQUESTS</th>
+            <th>COMMUNICATION LOGS</th>
+            <th><button data-toggle="modal" data-target="#addProperty" class="btn custom-btn"><b>+ House</b></button></th>
+        </tr>
+        @include('property.create')
+    </thead>
+
+    <tbody>
+        @foreach(Auth::user()->properties as $property)
+        <tr>
+            <td>{{$property->size}}</td>
+            <td>{{$property->price}}</td>
+            <td>{{$property->address}}</td>
+            <td>{{count($property->features)}}</td>
+            <td>{{count($property->leaseAgreements)}}</td>
+            <td>{{count($property->maintenanceRequests)}}</td>
+            <td>{{count($property->communicationLogs)}}</td>
+            <td></td>
+        </tr>
+
+        @endforeach
+    </tbody>
+    </table>
+    @else
+    <!-- tenant dashboard -->
+    @endif
+
+@endsection

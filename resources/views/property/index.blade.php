@@ -1,6 +1,6 @@
 @extends('layouts.app')
     @section('title')
-        available productions
+        properties
     @endsection
     @section('content')
     <table class="table" style="color: black;">
