@@ -24,6 +24,11 @@ class Property extends Model
         return $this->hasMany(CommunicationLog::class);
     }
 
+    public function rentRequests()
+    {
+        return $this->hasMany(RentRequest::class);
+    }
+
     public function features()
     {
         return $this->hasMany(Feature::class);

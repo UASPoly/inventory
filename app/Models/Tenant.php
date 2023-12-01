@@ -14,6 +14,11 @@ class Tenant extends Model
         return $this->hasMany(MaintenanceRequest::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function leaseAgreements()
     {
         return $this->hasMany(LeaseAgreement::class);

@@ -70,4 +70,15 @@ class User extends Authenticatable
     {
         return $this->hasOne(Tenant::class);
     }
+
+    public function properyRentRequests()
+    {
+        $request = [];
+        foreach($this->properties as $property){
+            foreach($property->rentRequests as $rentRequest){
+                $request[] = $rentRequest;
+            }
+        }
+        return $request;
+    }
 }

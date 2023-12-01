@@ -78,7 +78,7 @@
       </li>
       @if(Auth::user()->role == 'landlord')
         <li class="nav-item">
-            <a class="nav-link" href="#services" style="color: #007bff; font-weight: bold;">Requests</a>
+            <a class="nav-link" href="{{route('property.request.index')}}" style="color: #007bff; font-weight: bold;">{{count(Auth::user()->properyRentRequests())}} Requests</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#testimonials" style="color: #007bff; font-weight: bold;">Communications</a>

@@ -45,6 +45,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
             Route::post('/{featureId}/update', 'FeatureController@update')->name('update');    
             Route::get('/{featureId}/delete', 'FeatureController@delete')->name('delete');        
         });
+
+        Route::name('request.')
+        ->prefix('/request')
+        ->group(function (){
+            Route::get('/', 'RentRequestController@index')->name('index');    
+            Route::post('/register', 'RentRequestController@register')->name('register');    
+            Route::post('/{requestId}/update', 'RentRequestController@update')->name('update');    
+            Route::get('/{requestId}/delete', 'RentRequestController@delete')->name('delete');        
+        });
     });
 
     
