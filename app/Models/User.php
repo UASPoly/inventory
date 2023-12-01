@@ -81,4 +81,17 @@ class User extends Authenticatable
         }
         return $request;
     }
+    
+    public function leaseAgreements()
+    {
+        $agreements = [];
+        foreach($this->properties as $property){
+            foreach($property->rentRequests->where('status','approved') as $rentRequest){
+               foreach($rentRequest->leaseAgreements as $leasAgreement){
+                   $agreements[] = $leasAgreement;
+               }
+            }
+        }
+        return $agreements;
+    }
 }

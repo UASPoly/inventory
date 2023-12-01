@@ -81,7 +81,7 @@
             <a class="nav-link" href="{{route('property.request.index')}}" style="color: #007bff; font-weight: bold;">{{count(Auth::user()->properyRentRequests())}} Requests</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#testimonials" style="color: #007bff; font-weight: bold;">Communications</a>
+            <a class="nav-link" href="{{route('property.lease.index')}}" style="color: #007bff; font-weight: bold;">Lease Agreement</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#testimonials" style="color: #007bff; font-weight: bold;">Tenants</a>

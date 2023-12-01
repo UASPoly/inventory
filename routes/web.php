@@ -54,6 +54,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
             Route::post('/{requestId}/update', 'RentRequestController@update')->name('update');    
             Route::get('/{requestId}/delete', 'RentRequestController@delete')->name('delete');        
         });
+
+        Route::name('lease.')
+        ->prefix('/lease')
+        ->group(function (){
+            Route::get('/', 'LeaseAgreementController@index')->name('index');    
+            Route::post('/register', 'LeaseAgreementController@register')->name('register');    
+            Route::post('/{leaseId}/pay', 'LeaseAgreementController@pay')->name('pay');    
+            
+        });
     });
 
     

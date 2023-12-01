@@ -18,6 +18,7 @@ class CreateFinancialTransactionsTable extends Migration
             $table->foreignId('lease_agreement_id');
             $table->string('date');
             $table->string('payment_type_id');
+            $table->string('amount');
             $table->string('payment_mode');
             $table->timestamps();
         });

@@ -1,64 +1,105 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Designing a comprehensive database schema for a rental management system involves defining tables, relationships, and attributes to store essential information about properties, tenants, lease agreements, and other relevant data. Below is a simplified example of a database schema for this project:
 
-## About Laravel
+Tables:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Property Table:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+PropertyID (Primary Key)
+Address
+Size
+Features
+RentalPrice
+Tenant Table:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+TenantID (Primary Key)
+FirstName
+LastName
+ContactNumber
+Email
+EmploymentDetails
+Lease Agreement Table:
 
-## Learning Laravel
+LeaseID (Primary Key)
+PropertyID (Foreign Key referencing Property Table)
+TenantID (Foreign Key referencing Tenant Table)
+RentAmount
+LeaseDuration
+SecurityDeposit
+LeaseStartDate
+LeaseEndDate
+Maintenance Request Table:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+RequestID (Primary Key)
+PropertyID (Foreign Key referencing Property Table)
+TenantID (Foreign Key referencing Tenant Table)
+RequestDate
+Description
+Status (Pending, In Progress, Completed)
+Financial Transactions Table:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+TransactionID (Primary Key)
+LeaseID (Foreign Key referencing Lease Agreement Table)
+TransactionDate
+Amount
+Type (Rent Payment, Expense, Security Deposit, etc.)
+Communication Log Table:
 
-## Laravel Sponsors
+LogID (Primary Key)
+PropertyID (Foreign Key referencing Property Table)
+TenantID (Foreign Key referencing Tenant Table)
+LogDate
+CommunicationType (Email, Letter, Note)
+Content
+Relationships:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+One Property can have multiple Lease Agreements (one-to-many relationship).
+One Tenant can have multiple Lease Agreements (one-to-many relationship).
+One Lease Agreement corresponds to one Property and one Tenant (many-to-one relationships).
+One Property can have multiple Maintenance Requests (one-to-many relationship).
+One Tenant can submit multiple Maintenance Requests (one-to-many relationship).
+One Lease Agreement can have multiple Financial Transactions (one-to-many relationship).
+One Property can have multiple Communication Logs (one-to-many relationship).
+One Tenant can have multiple Communication Logs (one-to-many relationship).
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#Software funtional requirement#
 
-## Contributing
+Functional requirements define the specific functionalities and features that the rental management system must possess to meet the needs of users and achieve its objectives. Here are key functional requirements for the rental management system:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+User Authentication and Authorization:
 
-## Code of Conduct
+The system should have secure user authentication mechanisms to ensure that only authorized users, such as property owners, tenants, and administrators, can access specific functionalities.
+Property Listing:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Property owners should be able to easily list and advertise their rental properties on the platform. This includes providing details such as property address, size, features, and rental price.
+Tenant Application Management:
 
-## Security Vulnerabilities
+The system should allow tenants to submit online applications for rental properties. Property owners or administrators should be able to review and manage these applications efficiently.
+Lease Agreement Management:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+The system must support the creation, storage, and management of digital lease agreements. This includes specifying rental terms, lease duration, security deposit, and any property-specific rules or restrictions.
+Tenant Information Management:
 
-## License
+The system should maintain a comprehensive database of tenant information, including contact details, employment history, references, and a history of previous leases.
+Maintenance Request Handling:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Tenants should be able to submit maintenance requests through the system, specifying the nature of the request. Property owners or maintenance personnel should have a tool to track, prioritize, and update the status of these requests.
+Rent Payment Processing:
+
+The system must facilitate rent payments, allowing tenants to make online payments. It should generate receipts and track payment histories. Property owners should be able to view and manage rent payments easily.
+Communication and Notifications:
+
+The system should support communication between property owners and tenants. Automated notifications, such as lease renewal reminders or maintenance updates, should be sent to relevant parties.
+Reporting and Analytics:
+
+The system should provide reporting capabilities, allowing property owners and administrators to generate reports on financial transactions, property occupancy rates, and other relevant metrics.
+Document Management:
+
+A centralized repository for storing and managing important documents, including lease agreements, maintenance records, and legal documents, should be part of the system.
+User Roles and Permissions:
+
+Different user roles (e.g., property owner, tenant, administrator) should have distinct permissions to access and perform specific actions within the system.
+Search and Filter Functionality:
+
+The system should have robust search and filter features to help users easily find specific properties, tenant information, or transaction records.
