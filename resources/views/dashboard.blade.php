@@ -80,11 +80,49 @@
         <div class="row">
         @foreach(Auth::user()->tenant->rentRequests as $rentRequest)
         <div class="col-md-12">
-        <div class="card">
-        <div class="card-header">
-        <h2>Your request has been received by {{$rentRequest->property->user->name}}</h2>
-        </div>
-        </div>
+            <div class="card">
+                <div class="card-header">
+                <h2>Your request has been received by {{$rentRequest->property->user->name}} and {{$rentRequest->status}}</h2>
+                </div>
+                @if($rentRequest->status == 'approved')
+                <div class="card-body">
+                <table class="table" style="color: black;">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>HOUSE</th>
+                            <th>ADDRESS</th>
+                            <th>AMOUNT</th>
+                            <th>DURATION</th>
+                            <th>SECURITY DEPOSIT</th>
+                            <th>START AT</th>
+                            <th>END AT</th>
+                            <th>PAID</th>
+                            <th>BALANCE</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($rentRequest->leaseAgreements as $agreement)
+                            
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$agreement->rentRequest->property->size}}</td>
+                                <td>{{$agreement->rentRequest->property->address}}</td>
+                                <td>{{$agreement->amount}}</td>
+                                <td>{{$agreement->duration}} Months</td>
+                                <td>{{$agreement->security_deposit}}</td>
+                                <td>{{$agreement->start_at}}</td>
+                                <td>{{$agreement->end_at}}</td>
+                                <td>{{number_format($agreement->paid(), 2)}}</td>
+                                <td>{{number_format($agreement->balance(), 2)}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                </div>
+                @endif
+            </div>
         </div>
         @endforeach
         @foreach(App\Models\Property::all() as $property)
