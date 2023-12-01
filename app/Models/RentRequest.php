@@ -9,13 +9,18 @@ class RentRequest extends Model
 {
     protected $guarded = [];
     
-    public function tenant()
+    public function leaseAgreements()
     {
-        return $this->belongsTo(Tenant::class);
+        return $this->hasMany(LeaseAgreement::class);
     }
 
     public function property()
     {
         return $this->belongsTo(Property::class);
+    }
+
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class);
     }
 }

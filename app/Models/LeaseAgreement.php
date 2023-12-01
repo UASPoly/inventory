@@ -9,14 +9,9 @@ class LeaseAgreement extends Model
 {
     protected $guarded = [];
 
-    public function property()
+    public function leaseAgreement()
     {
-        return $this->belongsTo(Property::class);
-    }
-
-    public function tenant()
-    {
-        return $this->belongsTo(Tenant::class);
+        return $this->belongsTo(LeaseAgreement::class);
     }
 
     public function financialTransactions()

@@ -15,8 +15,7 @@ class CreateLeaseAgreementsTable extends Migration
     {
         Schema::create('lease_agreements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('property_id');
-            $table->foreignId('tenant_id');
+            $table->foreignId('rent_request_id');
             $table->string('amount');
             $table->string('duration');
             $table->string('security_deposit');

@@ -87,9 +87,11 @@
             <a class="nav-link" href="#testimonials" style="color: #007bff; font-weight: bold;">Tenants</a>
         </li>
       @else
-        <li class="nav-item">
-            <a class="nav-link" href="#services" style="color: #007bff; font-weight: bold;">{{count(Auth::user()->tenant->rentRequests->where('status', 'pending'))}} Requests</a>
-        </li>
+        @if(Auth::user()->tenant)
+          <li class="nav-item">
+              <a class="nav-link" href="#services" style="color: #007bff; font-weight: bold;">{{count(Auth::user()->tenant->rentRequests->where('status', 'pending'))}} Requests</a>
+          </li>
+        @endif
       @endif
       <li class="nav-item">
         <a class="nav-link" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout').submit();" style="color: #007bff; font-weight: bold;">Logout</a>

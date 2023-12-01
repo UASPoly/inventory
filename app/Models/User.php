@@ -75,7 +75,7 @@ class User extends Authenticatable
     {
         $request = [];
         foreach($this->properties as $property){
-            foreach($property->rentRequests as $rentRequest){
+            foreach($property->rentRequests->where('status','pending') as $rentRequest){
                 $request[] = $rentRequest;
             }
         }

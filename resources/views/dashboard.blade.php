@@ -15,9 +15,7 @@
             <th>PRICE</th>
             <th>ADDRESS</th>
             <th>FEATURES</th>
-            <th>LEASE AGREEMENTS</th>
-            <th>MAINTENANCE REQUESTS</th>
-            <th>COMMUNICATION LOGS</th>
+            
             <th><button data-toggle="modal" data-target="#addProperty" class="btn custom-btn"><b>+ House</b></button></th>
         </tr>
         @include('property.create')
@@ -30,9 +28,7 @@
             <td>{{$property->price}}</td>
             <td>{{$property->address}}</td>
             <td><a href="{{route('property.feature.index',[$property->id])}}">{{count($property->features)}}</a></td>
-            <td>{{count($property->leaseAgreements)}}</td>
-            <td>{{count($property->maintenanceRequests)}}</td>
-            <td>{{count($property->communicationLogs)}}</td>
+            
             <td>
             <button class="btn btn-warning" data-toggle="modal" data-target="#edit_{{$property->id}}">Edit</button>
             <a href="{{route('property.delete',[$property->id])}}" onclick="return confirm('Are you sure, you want delete this House?')"><button class="btn btn-secondary" >Edit</button></a>
@@ -82,6 +78,15 @@
         </div>
     @else
         <div class="row">
+        @foreach(Auth::user()->tenant->rentRequests as $rentRequest)
+        <div class="col-md-12">
+        <div class="card">
+        <div class="card-header">
+        <h2>Your request has been received by {{$rentRequest->property->user->name}}</h2>
+        </div>
+        </div>
+        </div>
+        @endforeach
         @foreach(App\Models\Property::all() as $property)
         @if(!Auth::user()->tenant->hasRequest($property))
         <div class="col-sm-12">
